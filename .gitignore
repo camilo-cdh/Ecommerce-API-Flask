@@ -1,0 +1,39 @@
+# Entorno virtual
+venv/
+ENV/
+env/
+*.pyc
+__pycache__/
+
+# Archivos de la base de datos
+*.db
+*.sqlite
+*.sqlite3
+
+# Variables de entorno
+.env
+!.env.example
+
+# Logs
+*.log
+
+# Carpeta de instancias (si existe)
+instance/
+
+# Archivos de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Archivos temporales de Python
+*.egg-info/
+dist/
+build/
