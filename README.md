@@ -99,7 +99,7 @@ Por defecto, la API está configurada en modo **Development**, lista para ejecut
 
 5. Ejecutar la aplicación
     ```sh
-    python run.py
+    python app.py
     ```
 
 La API se ejecutará por defecto en:
