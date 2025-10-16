@@ -24,7 +24,7 @@ def list_products():
     """
 
     # Query de todos los productos (sin ejecutar aún)
-    products = Product.query.all()
+    products = Product.query
     
     # Si la tabla está vacía, devolvemos 404
     if not products.first():
