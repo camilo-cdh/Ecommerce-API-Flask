@@ -8,7 +8,8 @@ def response(
     message="success",
     pagination=None,
     filters=None,
-    api_version="1.0"
+    api_version="1.0",
+    link_self = None
     ):
 
     """
@@ -22,6 +23,7 @@ def response(
         pagination (dict, optional): diccionario con info de paginación (page, has_next, has_prev, etc.).
         filters (dict, optional): filtros aplicados en la consulta.
         api_version (str, optional): versión de la API (por defecto "1.0").
+        link_self (str, optional): Link personalizado.
 
     Returns:
         Response: objeto jsonify listo para enviar como respuesta HTTP.
@@ -37,14 +39,18 @@ def response(
     metadata ={
     "api_version": api_version,
     "endpoint": request.path,
-    "filters": filters or {},
-    "query_params": request.args.to_dict(),
+    "method": request.method,
     "timestamp":datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
     }
 
+    if filters:
+        metadata["filters"] = filters
+    if request.args:
+        metadata["query_params"] = request.args.to_dict()
+
     # Links de navegación (self, next, prev)
     links = {
-        "self":request.url,
+        "self":link_self or request.url,
         "next":None,
         "prev":None
         }
@@ -70,10 +76,14 @@ def response(
         "results":len(data) if data else 0,
         "data":data,
         "metadata":metadata,
-        "pagination":pagination or {},
-        "links":links
         }
     
+    if pagination:
+        response_json["pagination"] = pagination
+
+    if request.method != "DELETE":
+        response_json["links"] = links
+ 
     return jsonify(response_json)
 
 

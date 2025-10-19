@@ -41,6 +41,7 @@ Incluye:
 - Listado de productos con paginación.
 - Filtros por marca, tipo y rango de precios.
 - Endpoint para obtener producto por SKU.
+- Endpoints para crear un nuevo producto, actualizar o eliminar.
 - Estructura modular y escalable.
 - Manejadores de errores personalizados.
 
